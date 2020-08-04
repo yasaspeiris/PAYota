@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+		<title>Pay With IOTA!</title>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            namespace = '/test';
+            var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+            socket.on('connect', function() {
+                socket.emit('my_event', {data: 'I\'m connected!'});
+            });
+            socket.on('my_response', function(msg) {
+                $('#iotabalance').text(msg.iotabalance).html();
+								$('#current').text(msg.current).html();
+								$('#energy').text(msg.energy).html();
+								$('#power').text(msg.power).html();
+            });
+            $('form#disconnect').submit(function(event) {
+                socket.emit('disconnect_request');
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+
+		<div class="container">
+				<div class="jumbotron">
+				<div class="row">
+
+						<div class="col-xs-6">
+								<img src="static/qr.png">
+								<h1></h1>
+						</div>
+						<div class="col-xs-6">
+								<h1>Scan the QR code with your favourite wallet.</h1>
+								<h3>IOTA Balance : <b><span id="iotabalance"></span></b></h3>
+						</div>
+
+				</div>
+				</div>
+
+				<div class="row">
+
+						<div class="col-xs-4">
+								<h3>Energy : <b><span id="energy"></span></b> Watt Hours</h3>
+						</div>
+						<div class="col-xs-4">
+								<h3>Current : <b><span id="current"></span></b> A</h3>
+						</div>
+						<div class="col-xs-4">
+								<h3>Power : <b><span id="power"></span></b> W</h3>
+						</div>
+
+				</div>
+
+		</div>
+
+		
+		
+		
+		
+		
+		
+		
+  
+</body>
+</html>
