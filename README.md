@@ -1,4 +1,4 @@
-# PAYota
+# PAYota - Pay for What You Use!
 This project allows you to use electrical appliances on a 'pay-as-you-go' (PAYG) basis, using the IOTA tangle.
 
 ![alt text](https://github.com/yasaspeiris/PAYota/blob/master/payota/images/1.main.jpg)
